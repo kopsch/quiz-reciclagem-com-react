@@ -1,0 +1,45 @@
+.option {
+  background-color: #0e702b;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.4s;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.option:hover {
+  opacity: 1;
+}
+
+#options-container .option p {
+  margin-bottom: 0;
+}
+
+.correct {
+  background-color: #0bfc03;
+  font-weight: bold;
+}
+
+.wrong {
+  background-color: #bd1818;
+  opacity: 0.5;
+}
+
+.hide {
+  display: none;
+}
+
+.option-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.picture {
+  width: 100px;
+}
