@@ -11,14 +11,10 @@ const ChangeLevel = () => {
 
   return (
     <div id="gameover">
-      <h2>Fim do primeiro nível!</h2>
-      <p>Pontuação: {quizState.score}</p>
-      <p>
-        Você acertou {quizState.score} de {quizState.questions.firstLevel.length}{" "}
-        perguntas.
-      </p>
+      <h2>FIM DO PRIMEIRO NÍVEL!</h2>
+      <p>O PRÓXIMO NÍVEL SERÁ MAIS DIFÍCIL</p>
       <img src={WellDone} alt="Fim do Quiz" />
-      <button onClick={() => dispatch({ type: "START_GAME_LEVEL2" })}>Próximo nível</button>
+      <button onClick={() => dispatch({ type: "START_GAME_LEVEL2" })}>PRÓXIMO NÍVEL</button>
     </div>
   );
 };

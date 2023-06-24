@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { QuizContext } from "../context/quiz";
-import { FaVolumeUp } from "react-icons/fa";
+import { FaHome, FaVolumeUp } from "react-icons/fa";
 
 import Option from "./Option";
 
@@ -28,17 +28,35 @@ const Question = () => {
 
   return (
     <div id="question">
+      <button className="home" onClick={() => dispatch({ type: "NEW_GAME" })}>
+      <FaHome />
+      </button>
       <p>
-        Pergunta {quizState.currentQuestion + 1} de{" "}
-        {quizState.currentLevel === 1
-          ? quizState.questions.firstLevel.length
-          : quizState.questions.secondLevel.length}
+        <b>
+          PERGUNTA {quizState.currentQuestion + 1} DE{" "}
+          {quizState.currentLevel === 1
+            ? quizState.questions.firstLevel.length
+            : quizState.questions.secondLevel.length}
+        </b>
       </p>
       <div className="question-description">
-        <h2>{currentQuestion.question}</h2>
+        {quizState.currentLevel === 1 ? 
+        <div className="container-question">
+                <h2 dangerouslySetInnerHTML={{ __html: currentQuestion.question.name }}></h2>
+                <img className="image-question" src={currentQuestion.question.image}></img>
+                <button onClick={() => handleSpeak(currentQuestion.question.name)}>
+                <FaVolumeUp />
+                </button>
+        </div>
+        : 
+        <>
+                <h2 dangerouslySetInnerHTML={{ __html: currentQuestion.question }}></h2>
         <button onClick={() => handleSpeak(currentQuestion.question)}>
-          <FaVolumeUp />
-        </button>
+        <FaVolumeUp />
+        </button></>
+        }
+
+
       </div>
       <div id="options-container">
         {currentQuestion.options.map((option) => (
@@ -52,7 +70,7 @@ const Question = () => {
                 quizState.currentLevel === 1 ? option.name : option
               )
             }
-            hide={quizState.optionToHide === option ? "hide" : null}
+            hide={quizState.optionToHide.includes(option) ? "hide" : null}
           />
         ))}
       </div>
@@ -69,7 +87,7 @@ const Question = () => {
             </>
           )}
           <button onClick={() => dispatch({ type: "REMOVE_OPTION" })}>
-            Excluir uma
+            EXCLUIR UMA
           </button>
           <button className="audio" onClick={() => handleSpeak("Excluir uma")}>
             <FaVolumeUp />
@@ -92,10 +110,7 @@ const Question = () => {
           <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
             Continuar
           </button>
-          <button
-            className="audio"
-            onClick={() => handleSpeak('Continuar')}
-          >
+          <button className="audio" onClick={() => handleSpeak("Continuar")}>
             <FaVolumeUp />
           </button>
         </>

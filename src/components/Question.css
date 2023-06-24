@@ -1,8 +1,17 @@
 #question {
-  background-color: #35de8a;
+  background-color: #c6f3dc;
   border-radius: 1rem;
   padding: 2rem;
   width: 500px;
+  position: relative;
+}
+
+.home {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  font-size: 26px;
+  padding: 5px 10px;
 }
 
 #question p {
@@ -10,7 +19,7 @@
 }
 
 #question button {
-  border: 2px solid #fff;
+  border: 2px solid #000;
   margin: 1rem 0 1rem 1rem;
 }
 
@@ -28,4 +37,24 @@
 .audio {
   margin: 0 0 0 0.5rem!important;
   font-size: 10px;
+}
+
+h2 {
+  font-weight: normal;
+}
+
+.image-question {
+  width: 200px;
+  height: 200px;
+}
+
+.container-question {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.container-question > button {
+  height: 50px;
 }

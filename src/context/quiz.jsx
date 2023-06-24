@@ -13,11 +13,10 @@ const initialState = {
   answerSelected: false,
   score: 0,
   help: false,
-  optionToHide: null,
+  optionToHide: [],
   currentLevel: 1,
 };
 
-console.log(initialState);
 
 const quizReducer = (state, action) => {
   switch (action.type) {
@@ -104,18 +103,39 @@ const quizReducer = (state, action) => {
     }
 
     case "CHECK_ANSWER": {
-      if (state.answerSelected) return state;
-
-      const answer = action.payload.answer;
-      const option = action.payload.option;
       let correctAnswer = 0;
+    
+      const questionWithoutOption =
+        state.currentLevel === 1
+          ? state.questions.firstLevel[state.currentQuestion]
+          : state.questions.secondLevel[state.currentQuestion];
+    
+      const answer = action.payload.answer;
+      let option = action.payload.option;
+      let optionToHide = state.optionToHide.slice(); // Criar uma cópia da lista atual
 
       if (answer === option) correctAnswer = 1;
+      if (answer !== option) {
+        questionWithoutOption.options.forEach((option2) => {
+          if(state.currentLevel === 1) {
+            if (option === option2.name) {
+              optionToHide.push(option2);
+            }
+          } else {
+            if (option === option2) {
+              optionToHide.push(option2);
+            }
+          }
+        });
 
+        option = false;
+      }
+
+    
       return {
         ...state,
-        score: state.score + correctAnswer,
         answerSelected: option,
+        optionToHide: optionToHide,
       };
     }
 
@@ -127,21 +147,30 @@ const quizReducer = (state, action) => {
     }
 
     case "REMOVE_OPTION": {
-      const questionWithoutOption = state.currentLevel === 1 ? state.questions.firstLevel[state.currentQuestion] : state.questions.secondLevel[state.currentQuestion];
-
       let repeat = true;
       let optionToHide;
-
+      const questionWithoutOption =
+        state.currentLevel === 1
+          ? state.questions.firstLevel[state.currentQuestion]
+          : state.questions.secondLevel[state.currentQuestion];
+    
       questionWithoutOption.options.forEach((option) => {
-        if (option !== questionWithoutOption.answer && repeat) {
-          optionToHide = option;
-          repeat = false;
+        if (state.currentLevel === 1) {
+          if (option.name !== questionWithoutOption.answer && repeat) {
+            optionToHide = option;
+            repeat = false;
+          }
+        } else {
+          if (option !== questionWithoutOption.answer && repeat) {
+            optionToHide = option;
+            repeat = false;
+          }
         }
       });
 
       return {
         ...state,
-        optionToHide,
+        optionToHide: [...state.optionToHide, optionToHide],
         help: true,
       };
     }

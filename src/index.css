@@ -2,14 +2,14 @@
   padding: 0;
   margin: 0;
   font-family: "Raleway", sans-serif;
-  color: #fff;
+  color: #000;
 }
 
 body,
 html {
   min-height: 100vh;
   height: 100%;
-  background-color: #1d1d1d;
+  background-color: #ffeffa;
 }
 
 img {
@@ -32,8 +32,8 @@ button {
 
 button:hover {
   background: linear-gradient(
-    90deg,
-    rgb(96, 198, 206) 0%
-    rgb(114, 238, 83) 100%,
+    180deg,
+    rgb(114, 238, 83) 0%,
+    rgb(96, 198, 206) 100%
   );
 }

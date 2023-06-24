@@ -10,7 +10,6 @@ const Option = ({ option, image, selectOption, answer, hide }) => {
   const synth = window.speechSynthesis;
 
   const handleSpeak = (text) => {
-    console.log(text);
     const utterance = new SpeechSynthesisUtterance(text);
     synth.speak(utterance);
   }
@@ -28,7 +27,7 @@ const Option = ({ option, image, selectOption, answer, hide }) => {
         `}
     >
       {
-        image !== '' ? <img className="picture" src={image}></img> : <p>{option}</p>
+        image !== '' ? <img className="picture" src={image}></img> : <p dangerouslySetInnerHTML={{ __html: option }}></p>
       }
     </div>
     <button className={`${hide ? "hide" : ""}`} onClick={() => handleSpeak(option)}>

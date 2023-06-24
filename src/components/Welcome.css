@@ -9,9 +9,13 @@
 }
 
 #welcome p {
-  color: #31c445;
+  color: #000;
 }
 
 #welcome img {
   margin-top: 2rem;
+}
+
+footer > p {
+  margin-bottom: 10px;
 }

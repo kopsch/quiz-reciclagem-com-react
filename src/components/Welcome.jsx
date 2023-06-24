@@ -16,17 +16,30 @@ const Welcome = () => {
   };
 
   return (
+    <>
     <div id="welcome">
-      <h2>Seja bem-vindo</h2>
-      <p>Clique no botão abaixo para começar:</p>
+      <h2>SEJA BEM-VINDO(A)</h2>
+      <p>CLIQUE NO BOTÃO ABAIXO PARA COMEÇAR:</p>
       <button onClick={() => dispatch({ type: "START_GAME_LEVEL1" })}>
-        Iniciar
+        INICIAR
       </button>
       <button style={{ fontSize: 10, margin: '0 0 0 1rem' }} onClick={() => handleSpeak('Iniciar')}>
         <FaVolumeUp />
     </button>
       <img style={{width: '400px'}} src={Recycling} alt="Início do Quiz" />
     </div>
+    <footer>
+    <p>
+      Desenvolvido por: Pedro Henrique Kopsch Caxambu, Eduarda Napoleão, David Mendes
+    </p>
+    <p>
+      Professora: Eliana Claudia Mayumi Ishikawa
+    </p>
+    <p>
+      Disciplina: Engenharia de Software
+    </p>
+    </footer>
+    </>
   );
 };
 
